@@ -5,7 +5,8 @@
   "dependencies": {
     "express": "^4.15.3",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "react-mindmap": "^2.0.6"
   },
   "devDependencies": {
     "react-scripts": "1.0.7"
