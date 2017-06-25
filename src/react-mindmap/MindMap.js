@@ -1,0 +1,143 @@
+import React, { Component, PropTypes } from 'react';
+import {
+  forceCollide,
+  forceLink,
+  forceManyBody,
+  forceSimulation,
+  select,
+} from 'd3';
+
+import {
+  d3Connections,
+  d3Nodes,
+  d3Subnodes,
+  d3Drag,
+  d3PanZoom,
+  onTick,
+} from './utils/d3';
+import { getDimensions, getViewBox } from './utils/dimensions';
+import nodeToHTML from './utils/nodeToHTML';
+import '../sass/main.css';
+
+
+export default class MindMap extends Component {
+  constructor(props) {
+    super(props);
+
+    // Create force simulation to position nodes that have no coordinates,
+    // and add it to the state.
+    const simulation = forceSimulation()
+      .force('link', forceLink().id(node => node.text))
+      .force('charge', forceManyBody())
+      .force('collide', forceCollide().radius(100));
+
+    this.state = { simulation };
+  }
+
+  /* eslint-disable no-param-reassign */
+  /*
+   * Generates HTML and dimensions for nodes and subnodes.
+   */
+  prepareNodes() {
+    const render = (el, className) => {
+      const dimensions = getDimensions(nodeToHTML(el), {}, className);
+
+      el.width = dimensions.width;
+      el.height = dimensions.height;
+      el.html = nodeToHTML(el);
+    };
+
+    this.props.nodes.forEach(node => render(node, 'mindmap-node'));
+    this.props.subnodes.forEach(subnode => render(subnode, 'mindmap-subnode-text'));
+  }
+
+  /*
+   * Add new class to nodes, attach drag behavior, and start simulation.
+   */
+  prepareEditor(svg, conns, nodes, subnodes) {
+    nodes
+      .attr('class', 'mindmap-node mindmap-node--editable')
+      .on('dblclick', (node) => {
+        node.fx = null;
+        node.fy = null;
+      });
+
+    nodes.call(d3Drag(this.state.simulation, svg, nodes));
+
+    this.state.simulation
+      .alphaTarget(0.5).on('tick', () => onTick(conns, nodes, subnodes));
+  }
+  /* eslint-enable no-param-reassign */
+
+  /*
+   * Render mind map using D3.
+   */
+  renderMap() {
+    const svg = select(this.refs.mountPoint);
+
+    // Clear the SVG in case there's stuff already there.
+    svg.selectAll('*').remove();
+
+    // Add subnode group
+    svg.append('g').attr('id', 'mindmap-subnodes');
+    this.prepareNodes();
+
+    // Bind data to SVG elements and set all the properties to render them.
+    const subnodes = d3Subnodes(svg, this.props.subnodes);
+    const connections = d3Connections(svg, this.props.connections);
+    const nodes = d3Nodes(svg, this.props.nodes);
+    nodes.append('title').text(node => node.note);
+
+    // Bind nodes and connections to the simulation.
+    this.state.simulation
+      .nodes(this.props.nodes)
+      .force('link').links(this.props.connections);
+
+    if (this.props.editable) {
+      this.prepareEditor(svg, connections, nodes, subnodes);
+    }
+
+    // Tick the simulation 100 times.
+    for (let i = 0; i < 100; i += 1) {
+      this.state.simulation.tick();
+    }
+    onTick(connections, nodes, subnodes);
+
+    // Add pan and zoom behavior and remove double click to zoom.
+    svg.attr('viewBox', getViewBox(nodes.data()))
+      .call(d3PanZoom(svg))
+      .on('dblclick.zoom', null);
+  }
+
+  componentDidMount() {
+    this.renderMap();
+  }
+
+  componentDidUpdate() {
+    this.renderMap();
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  render() {
+    return (
+      <div>
+        <svg className="mindmap-svg" ref="mountPoint" />
+      </div>
+    );
+  }
+}
+
+
+MindMap.defaultProps = {
+  nodes: [],
+  subnodes: [],
+  connections: [],
+  editable: false,
+};
+
+MindMap.propTypes = {
+  nodes: PropTypes.array,
+  subnodes: PropTypes.array,
+  connections: PropTypes.array,
+  editable: PropTypes.bool,
+};

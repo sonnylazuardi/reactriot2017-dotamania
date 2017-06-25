@@ -3,10 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "d3": "^4.9.1",
     "express": "^4.15.3",
+    "fs-walk": "0.0.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-mindmap": "^2.0.6"
+    "react-mindmap": "^2.0.6",
+    "react-redux": "^5.0.5",
+    "react-splitter-layout": "^0.2.1",
+    "redux": "^3.7.0"
   },
   "devDependencies": {
     "react-scripts": "1.0.7"

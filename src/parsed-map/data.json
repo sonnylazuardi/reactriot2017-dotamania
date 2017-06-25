@@ -1,0 +1,90 @@
+{
+  "title": "Mind Map Scrape - scraping with the easiness of mind map",
+  "nodes": [
+    {
+      "text": "news.ycominator.com",
+      "url": "http://news.ycominator.com",
+      "category": "wiki",
+      "fx": 0,
+      "fy": 0
+    },
+    {
+      "text": "items",
+      "url": "",
+      "fx": null,
+      "fy": null
+    },
+    {
+      "text": "attrs",
+      "url": "",
+      "fx": null,
+      "fy": null
+    }
+  ],
+  "subnodes": [
+    {
+      "text": "rank",
+      "url": "",
+      "color": "rgba(175, 54, 242, 1.0)",
+      "parent": "items"
+    },
+    {
+      "text": "title",
+      "url": "",
+      "color": "rgba(36, 170, 255, 1.0)",
+      "parent": "items"
+    },
+    {
+      "text": "sitebit",
+      "url": "",
+      "color": "rgba(255, 189, 10, 1.0)",
+      "parent": "items"
+    },
+    {
+      "text": "url",
+      "url": "",
+      "category": "free book",
+      "color": "rgba(34, 205, 224, 1.0)",
+      "parent": "items"
+    },
+    {
+      "text": "score",
+      "url": "",
+      "category": "article",
+      "color": "rgba(175, 54, 242, 1.0)",
+      "parent": "attrs"
+    },
+    {
+      "text": "user",
+      "url": "",
+      "category": "article",
+      "color": "rgba(36, 170, 255, 1.0)",
+      "parent": "attrs"
+    },
+    {
+      "text": "comment",
+      "url": "",
+      "category": "article",
+      "color": "rgba(255, 189, 10, 1.0)",
+      "parent": "attrs"
+    }
+  ],
+  "connections": [
+    {
+      "source": "items",
+      "target": "news.ycominator.com",
+      "curve": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "source": "attrs",
+      "target": "items",
+      "curve": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ]
+}
