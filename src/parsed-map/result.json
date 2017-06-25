@@ -1,0 +1,338 @@
+{
+  "data": {
+    "page": {
+      "items": [
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "97 points",
+            "user": "ingve"
+          },
+          "rank": "1.",
+          "sitebit": "stephaniehurlburt.com",
+          "title": "On Starting a Software Business",
+          "url": "http://stephaniehurlburt.com/blog/2017/6/24/on-starting-a-software-business"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "34 points",
+            "user": "prostoalex"
+          },
+          "rank": "2.",
+          "sitebit": "fastcompany.com",
+          "title": "How Norwegian Air Upended Travel With Its Cheap Flights",
+          "url": "https://www.fastcompany.com/40425836/how-norwegian-air-upended-travel-with-its-insanely-cheap-flights?utm_content=buffer2d42a&utm_medium=social&utm_source=facebook.com&utm_campaign=buffer"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "63 points",
+            "user": "codeismightier"
+          },
+          "rank": "3.",
+          "sitebit": "ticki.github.io",
+          "title": "How LZ4 works (2016)",
+          "url": "http://ticki.github.io/blog/how-lz4-works/"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "16 points",
+            "user": "mshenfield"
+          },
+          "rank": "4.",
+          "sitebit": "modern-sql.com",
+          "title": "Literate SQL",
+          "url": "http://modern-sql.com/use-case/literate-sql"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "37 points",
+            "user": "zczc"
+          },
+          "rank": "5.",
+          "sitebit": "aaai.org",
+          "title": "A Study of 4chan\u2019s Politically Incorrect Forum and Its Effects on the Web [pdf]",
+          "url": "https://aaai.org/ocs/index.php/ICWSM/ICWSM17/paper/view/15670/14790"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "66 points",
+            "user": "lin0tune"
+          },
+          "rank": "6.",
+          "sitebit": "developers.google.com",
+          "title": "Google Web Starter Kit",
+          "url": "https://developers.google.com/web/tools/starter-kit/"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "214 points",
+            "user": "wglass"
+          },
+          "rank": "7.",
+          "sitebit": "dukope.tumblr.com",
+          "title": "Localizing \u201cPapers, Please\u201d (2014)",
+          "url": "http://dukope.tumblr.com/post/83177288060/localizing-papers-please-papers-please-was"
+        },
+        {
+          "attrs": {
+            "comments": "",
+            "score": "",
+            "user": "19 minutes ago"
+          },
+          "rank": "8.",
+          "sitebit": "zesty.com",
+          "title": "Zesty (YC W14) is hiring software engineers",
+          "url": "https://www.zesty.com/jobs#Open-Positions"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "83 points",
+            "user": "vinchuco"
+          },
+          "rank": "9.",
+          "sitebit": "vanderbilt.edu",
+          "title": "Common Errors in Undergraduate Mathematics (2009)",
+          "url": "https://math.vanderbilt.edu/schectex/commerrs/"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "186 points",
+            "user": "vinnyglennon"
+          },
+          "rank": "10.",
+          "sitebit": "cloudonaut.io",
+          "title": "AWS Security Primer",
+          "url": "https://cloudonaut.io/aws-security-primer/"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "228 points",
+            "user": "PleaseHelpMe"
+          },
+          "rank": "11.",
+          "sitebit": "github.com",
+          "title": "Pencil \u2013 an open-source GUI prototyping tool for all platforms",
+          "url": "https://github.com/evolus/pencil"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "173 points",
+            "user": "madmax108"
+          },
+          "rank": "12.",
+          "sitebit": "wikimedia.org",
+          "title": "Wikimedia Foundation v. NSA: What Now?",
+          "url": "https://blog.wikimedia.org/2017/06/23/wikimedia-v-nsa-present-future/"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "126 points",
+            "user": "paladin314159"
+          },
+          "rank": "13.",
+          "sitebit": "washingtonpost.com",
+          "title": "The slow death of the electric guitar",
+          "url": "https://www.washingtonpost.com/graphics/2017/lifestyle/the-slow-secret-death-of-the-electric-guitar/"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "76 points",
+            "user": "xoa"
+          },
+          "rank": "14.",
+          "sitebit": "obdev.at",
+          "title": "What\u2019s New in Little Snitch 4",
+          "url": "https://www.obdev.at/products/littlesnitch/whatsnew.html"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "14 points",
+            "user": "MaxArt2501"
+          },
+          "rank": "15.",
+          "sitebit": "maxart2501.github.io",
+          "title": "Show HN: Share-this: Medium-like text sharing",
+          "url": "https://maxart2501.github.io/share-this/"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "284 points",
+            "user": "defaultnamehere"
+          },
+          "rank": "16.",
+          "sitebit": "verylegit.link",
+          "title": "Turn any link into a suspicious-looking one",
+          "url": "https://verylegit.link"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "64 points",
+            "user": "hunglee2"
+          },
+          "rank": "17.",
+          "sitebit": "theatlas.com",
+          "title": "Who Americans spend their time with",
+          "url": "https://www.theatlas.com/charts/HJFYm4uQ-"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "98 points",
+            "user": "guiambros"
+          },
+          "rank": "18.",
+          "sitebit": "redblobgames.com",
+          "title": "Hexagonal Grids",
+          "url": "http://www.redblobgames.com/grids/hexagons/"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "15 points",
+            "user": "pateketrueke"
+          },
+          "rank": "19.",
+          "sitebit": "github.com",
+          "title": "Dayguard \u2013 CSS Regression plugin for NightwatchJS",
+          "url": "https://github.com/tacoss/dayguard"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "68 points",
+            "user": "ColinWright"
+          },
+          "rank": "20.",
+          "sitebit": "aclu.org",
+          "title": "New TSA Policy May Lead to Increased Scrutiny of Reading Material",
+          "url": "https://www.aclu.org/blog/free-future/new-tsa-policy-may-lead-increased-scrutiny-reading-material"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "65 points",
+            "user": "miobrien"
+          },
+          "rank": "21.",
+          "sitebit": "berkeley.edu",
+          "title": "CS61A Structure and Interpretation of Computer Programs",
+          "url": "http://wla.berkeley.edu/~cs61a/fa11/61a-python/content/www/index.html"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "36 points",
+            "user": "irsina"
+          },
+          "rank": "22.",
+          "sitebit": "github.com",
+          "title": "Show HN: Using 3D Convolutional Neural Networks for Speaker Verification",
+          "url": "https://github.com/astorfi/3D-convolutional-speaker-recognition"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "33 points",
+            "user": "hunglee2"
+          },
+          "rank": "23.",
+          "sitebit": "theatlantic.com",
+          "title": "Chemical exposure and brain health",
+          "url": "https://www.theatlantic.com/health/archive/2014/03/the-toxins-that-threaten-our-brains/284466/?single_page=true"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "41 points",
+            "user": "bollu"
+          },
+          "rank": "24.",
+          "sitebit": "pixel-druid.com",
+          "title": "Show HN: Simplexhc \u2013 Haskell to LLVM compiler (design phase)",
+          "url": "https://pixel-druid.com/blog/announcing-simplexhc/"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "33 points",
+            "user": "rockeetterark"
+          },
+          "rank": "25.",
+          "sitebit": "techinasia.com",
+          "title": "Terark (YC W17) is a profitable database compression company based in Beijing",
+          "url": "https://www.techinasia.com/real-pied-piper-silicon-valley"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "41 points",
+            "user": "virtualcpp"
+          },
+          "rank": "26.",
+          "sitebit": "cppdepend.com",
+          "title": "Easy way to detect where the C++11/C++14 features are used in a C++ project",
+          "url": "http://www.cppdepend.com/blog/?p=144"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "53 points",
+            "user": "Sujan"
+          },
+          "rank": "27.",
+          "sitebit": "theoutline.com",
+          "title": "Chiropractors are bullshit",
+          "url": "https://theoutline.com/post/1617/chiropractors-are-bullshit"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "33 points",
+            "user": "hcs"
+          },
+          "rank": "28.",
+          "sitebit": "github.com",
+          "title": "Show HN: Ecola \u2013 touch screen tree editor with hierarchical zoom",
+          "url": "https://github.com/hcs64/ecola"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "313 points",
+            "user": "sharkdp"
+          },
+          "rank": "29.",
+          "sitebit": "insect.sh",
+          "title": "Show HN: Insect \u2013 a high-precision scientific calculator with physical units",
+          "url": "https://insect.sh/"
+        },
+        {
+          "attrs": {
+            "comments": "hide",
+            "score": "136 points",
+            "user": "pkmital"
+          },
+          "rank": "30.",
+          "sitebit": "tensorflow.org",
+          "title": "Generate your own sounds with NSynth",
+          "url": "https://magenta.tensorflow.org/nsynth-fastgen"
+        }
+      ]
+    }
+  }
+}

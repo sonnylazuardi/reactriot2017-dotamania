@@ -13,6 +13,7 @@ const initialState = {
   nodes: data.nodes,
   subnodes: data.subnodes,
   editable: false,
+  activeNode: null,
 }
 
 const reducer = (state = initialState, action) => {
@@ -60,6 +61,39 @@ const reducer = (state = initialState, action) => {
         ...state,
         editable: !state.editable,
       }
+    case 'SELECT_NODE': {
+      if (!data) return {...state, activeNode: null};
+      let node = state.nodes.filter(node => node.text == data)[0];
+      if (!node) {
+        node = state.subnodes.filter(subnode => subnode.text == data)[0];
+      }
+      console.log('ACTIVE NODE', node);
+      return {
+        ...state,
+        activeNode: node,
+      }
+    }
+    case 'EDIT_NODE': {
+      let type = 'node';
+      let node = state.nodes.filter(node => node.text == data.source)[0];
+      if (!node) {
+        type = 'subnode';
+        node = state.subnodes.filter(subnode => subnode.text == data.source)[0];
+      }
+      node = {...node, ...data.node};
+      return {
+        ...state,
+        nodes: type == 'node' ? state.nodes.map(node => {
+          if (node.text == data.source) return {...node, ...data.node};
+          return node;
+        }) : state.nodes,
+        subnodes: type == 'subnode' ? state.subnodes.map(subnode => {
+          if (subnode.text == data.source) return {...subnode, ...data.node};
+          return subnode;
+        }) : state.subnodes,
+        activeNode: node,
+      }
+    }
     default:
       return state
   }

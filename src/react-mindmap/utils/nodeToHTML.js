@@ -25,24 +25,31 @@ window.editNode = (text) => {
   })
 }
 
+window.selectNode = (text) => {
+  window.store.dispatch({
+    type: 'SELECT_NODE',
+    data: text,
+  })
+}
+
 /*
  * Return the HTML representation of a node.
  * The node is an object that has text, url, and category attributes;
  * all of them optional.
+
+ <a href="#" style="background-color: #fff" onclick="removeNode('${node.text}')">
+   <span>❌</span>
+ </a>
+ <a href="#" style="background-color: #fff" onclick="editNode('${node.text}')">
+   <span>✏️</span>
+ </a>
+ <a href="#" style="background-color: #fff" onclick="addNode('${node.text}')">
+   <span style="">❎</span>
+ </a>
+
+
  */
 export default (node) => {
   const emoji = categoryToIMG(node.category);
-
-  return `
-    <a href="#">${node.text} ${emoji}</a>
-    <a href="#" style="background-color: #fff" onclick="removeNode('${node.text}')">
-      <span>❌</span>
-    </a>
-    <a href="#" style="background-color: #fff" onclick="editNode('${node.text}')">
-      <span>✏️</span>
-    </a>
-    <a href="#" style="background-color: #fff" onclick="addNode('${node.text}')">
-      <span style="">❎</span>
-    </a>
-  `;
+  return `<a href="#" onclick="selectNode('${node.text}')">${node.text} ${emoji}</a>`;
 };

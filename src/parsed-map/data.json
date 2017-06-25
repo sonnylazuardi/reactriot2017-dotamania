@@ -2,21 +2,24 @@
   "title": "Mind Map Scrape - scraping with the easiness of mind map",
   "nodes": [
     {
-      "text": "news.ycominator.com",
-      "url": "http://news.ycominator.com",
+      "text": "news.ycombinator.com",
+      "url": "http://news.ycombinator.com",
       "category": "wiki",
+      "selector": "http://news.ycombinator.com",
       "fx": 0,
       "fy": 0
     },
     {
       "text": "items",
       "url": "",
+      "selector": "tr.athing",
       "fx": null,
       "fy": null
     },
     {
       "text": "attrs",
       "url": "",
+      "selector": "next",
       "fx": null,
       "fy": null
     }
@@ -25,46 +28,49 @@
     {
       "text": "rank",
       "url": "",
+      "selector": "td span.rank",
       "color": "rgba(175, 54, 242, 1.0)",
       "parent": "items"
     },
     {
       "text": "title",
       "url": "",
+      "selector": "td.title a",
       "color": "rgba(36, 170, 255, 1.0)",
       "parent": "items"
     },
     {
       "text": "sitebit",
       "url": "",
+      "selector": "span.comhead a",
       "color": "rgba(255, 189, 10, 1.0)",
       "parent": "items"
     },
     {
       "text": "url",
       "url": "",
-      "category": "free book",
+      "selector": "td.title a|href",
       "color": "rgba(34, 205, 224, 1.0)",
       "parent": "items"
     },
     {
       "text": "score",
       "url": "",
-      "category": "article",
+      "selector": "span.score",
       "color": "rgba(175, 54, 242, 1.0)",
       "parent": "attrs"
     },
     {
       "text": "user",
       "url": "",
-      "category": "article",
+      "selector": "a:eq(0)",
       "color": "rgba(36, 170, 255, 1.0)",
       "parent": "attrs"
     },
     {
       "text": "comment",
       "url": "",
-      "category": "article",
+      "selector": "a:eq(2)",
       "color": "rgba(255, 189, 10, 1.0)",
       "parent": "attrs"
     }
@@ -72,7 +78,7 @@
   "connections": [
     {
       "source": "items",
-      "target": "news.ycominator.com",
+      "target": "news.ycombinator.com",
       "curve": {
         "x": 0,
         "y": 0
