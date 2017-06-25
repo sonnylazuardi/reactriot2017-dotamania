@@ -5,9 +5,10 @@ body {
 }
 
 .layout-pane.layout-pane-primary {
-  overflow-y: hidden;
+  overflow-y: hidden !important;
 }
 
-.splitter-layout .layout-pane {
-  overflow-y: hidden;
+* {
+  min-height: 0;
+  min-width: 0;
 }
