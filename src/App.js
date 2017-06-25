@@ -4,14 +4,15 @@ import { connect } from 'react-redux';
 import SplitterLayout from 'react-splitter-layout';
 import JSONTree from 'react-json-tree'
 import axios from 'axios';
-
-const result = require('./parsed-map/result.json');
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 class App extends Component {
   state = {
     title: '',
     selector: '',
     addChild: false,
+    result: null,
+    copied: false,
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.activeNode != nextProps.activeNode) {
@@ -23,7 +24,7 @@ class App extends Component {
     // console.log(this.onBuildQuery());
     axios({
       method: 'post',
-      url: 'http://gdom.graphene-python.org/graphql',
+      url: '/graphql',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -32,7 +33,9 @@ class App extends Component {
         query: this.onBuildQuery(),
       },
     }).then(({data}) => {
-      console.log('RESPONSE', data);
+      this.setState({
+        result: data,
+      });
     }).catch(e => console.log(e));
   }
   onBuildQuery() {
@@ -106,7 +109,7 @@ class App extends Component {
   }
   render() {
     const {activeNode} = this.props;
-    const {title, selector} = this.state;
+    const {title, selector, result} = this.state;
     return (
       <div style={styles.container}>
         <SplitterLayout>
@@ -136,16 +139,23 @@ class App extends Component {
                     </div>
                     <button onClick={this.onSave}>save</button>
                     <button onClick={this.onDelete}>delete</button>
-                    <button onClick={this.onBuild}>build</button>
                   </div>
                   : <div>Please select a node</div>}
+                <button onClick={this.onBuild}>build</button>
               </div>
               <div  style={{backgroundColor: 'rgb(0, 43, 54)', minHeight: '100vh'}}>
-                <JSONTree
-                  data={result}
-                  style={{height: '100vh'}}
-                  shouldExpandNode={(keyName, data, level) => true}
-                  />
+                <CopyToClipboard text={JSON.stringify(result)}
+                  onCopy={() => this.setState({copied: true})}>
+                  <button>Copy to clipboard</button>
+                </CopyToClipboard>
+                {this.state.copied ? <span style={{color: 'red'}}>Copied.</span> : null}
+                {result ?
+                  <JSONTree
+                    data={result}
+                    style={{height: '100vh'}}
+                    shouldExpandNode={(keyName, data, level) => true}
+                    />
+                    : null}
               </div>
             </SplitterLayout>
           </div>

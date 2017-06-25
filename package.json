@@ -4,10 +4,12 @@
   "private": true,
   "dependencies": {
     "axios": "^0.16.2",
+    "body-parser": "^1.17.2",
     "d3": "^4.9.1",
     "express": "^4.15.3",
     "fs-walk": "0.0.1",
     "react": "^15.6.1",
+    "react-copy-to-clipboard": "^5.0.0",
     "react-dom": "^15.6.1",
     "react-json-tree": "^0.10.9",
     "react-mindmap": "^2.0.6",
