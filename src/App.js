@@ -45,7 +45,7 @@ class App extends Component {
 
     return (`
       {
-        page(url: "http://${rootParent.text}") {
+        page(url: "${rootParent.selector}") {
           ${this.onSearchNode(rootParent)}
         }
       }
@@ -189,7 +189,9 @@ class App extends Component {
                       </div>
                       <button onClick={this.onSave}>save</button>
                       <button onClick={this.onAddChild}>add child</button>
-                      <button onClick={this.onDelete}>delete</button>
+                      {activeNode.category != 'wiki' ?
+                        <button onClick={this.onDelete}>delete</button>
+                        : null}
                     </div>
                     : <div>Please select a node</div>)}
                 <button onClick={this.onBuild}>build</button>
