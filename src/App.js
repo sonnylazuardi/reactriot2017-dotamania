@@ -10,9 +10,10 @@ class App extends Component {
   state = {
     title: '',
     selector: '',
-    addChild: false,
+    isAddChild: false,
     result: null,
     copied: false,
+    childType: 'node',
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.activeNode != nextProps.activeNode) {
@@ -69,9 +70,9 @@ class App extends Component {
           })}
           ${hasChild ? this.onSearchNode(activeNode) : null}
         `;
-        if (activeNode.selector == 'next') {
+        if (activeNode.selector == 'next' || activeNode.selector == 'prev' ) {
           return `
-            ${activeNode.text}: next {
+            ${activeNode.text}: ${activeNode.selector} {
               ${childrenQuery}
             }
           `;
@@ -107,9 +108,44 @@ class App extends Component {
       data: null,
     });
   }
+  onAddChild = () => {
+    this.setState({
+      isAddChild: true,
+      title: '',
+      selector: '',
+    });
+  }
+  onBack = () => {
+    this.setState({
+      isAddChild: false,
+      title: this.props.activeNode.text,
+      selector: this.props.activeNode.selector,
+    });
+  }
+  onSaveChild = () => {
+    const {title, selector} = this.state;
+    this.props.dispatch({ type: 'ADD_NODE', data: {
+      type: this.state.childType,
+      node: {
+        text: title,
+        selector: selector,
+        url: "",
+        fx: null,
+        fy: null,
+      },
+      source: {
+        text: this.props.activeNode.text,
+      },
+    }});
+    this.setState({
+      isAddChild: false,
+      title: this.props.activeNode.text,
+      selector: this.props.activeNode.selector,
+    });
+  }
   render() {
     const {activeNode} = this.props;
-    const {title, selector, result} = this.state;
+    const {title, selector, result, isAddChild} = this.state;
     return (
       <div style={styles.container}>
         <SplitterLayout>
@@ -129,18 +165,33 @@ class App extends Component {
                     type: 'TOGGLE_EDITABLE',
                   });
                 }}>Toggle Edit</a>
-                {activeNode ?
+                {isAddChild ?
                   <div>
+                    <button onClick={this.onBack}>back</button>
+                    <button onClick={() => this.setState({childType: 'node'})} style={this.state.childType == 'node' ? {backgroundColor: '#ddd'} : {}}>node</button>
+                    <button onClick={() => this.setState({childType: 'subnode'})} style={this.state.childType == 'subnode' ? {backgroundColor: '#ddd'} : {}}>subnode</button>
                     <div>
                       title: <input type="text" value={title} onChange={(e) => {this.setState({title: e.target.value})}}></input>
                     </div>
                     <div>
                       selector: <input type="text" value={selector} onChange={(e) => {this.setState({selector: e.target.value})}}></input>
                     </div>
-                    <button onClick={this.onSave}>save</button>
-                    <button onClick={this.onDelete}>delete</button>
+                    <button onClick={this.onSaveChild}>save</button>
                   </div>
-                  : <div>Please select a node</div>}
+                  :
+                  (activeNode ?
+                    <div>
+                      <div>
+                        title: <input type="text" value={title} onChange={(e) => {this.setState({title: e.target.value})}}></input>
+                      </div>
+                      <div>
+                        selector: <input type="text" value={selector} onChange={(e) => {this.setState({selector: e.target.value})}}></input>
+                      </div>
+                      <button onClick={this.onSave}>save</button>
+                      <button onClick={this.onAddChild}>add child</button>
+                      <button onClick={this.onDelete}>delete</button>
+                    </div>
+                    : <div>Please select a node</div>)}
                 <button onClick={this.onBuild}>build</button>
               </div>
               <div  style={{backgroundColor: 'rgb(0, 43, 54)', minHeight: '100vh'}}>

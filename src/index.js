@@ -42,9 +42,12 @@ const reducer = (state = initialState, action) => {
         ] : state.nodes,
         subnodes: data.type == 'subnode' ? [
           ...state.subnodes,
-          data.node,
+          {
+            ...data.node,
+            parent: data.source.text
+          },
         ] : state.subnodes,
-        connections: [
+        connections: data.type == 'node' ? [
           ...state.connections,
           {
             source: data.source.text,
@@ -54,7 +57,7 @@ const reducer = (state = initialState, action) => {
               y: 0,
             },
           }
-        ],
+        ] : state.connections,
       }
     case 'TOGGLE_EDITABLE':
       return {
