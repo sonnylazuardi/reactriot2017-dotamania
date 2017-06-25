@@ -6,22 +6,22 @@
       "url": "http://news.ycombinator.com",
       "category": "wiki",
       "selector": "http://news.ycombinator.com",
-      "fx": 0,
-      "fy": 0
+      "fx": -13.916222252976013,
+      "fy": -659.1641376795345
     },
     {
       "text": "items",
       "url": "",
       "selector": "tr.athing",
-      "fx": null,
-      "fy": null
+      "fx": 154.3247731601375,
+      "fy": -429.73700786748157
     },
     {
       "text": "attrs",
       "url": "",
       "selector": "next",
-      "fx": null,
-      "fy": null
+      "fx": 455.7839253819375,
+      "fy": -183.5539283546699
     }
   ],
   "subnodes": [
@@ -80,16 +80,16 @@
       "source": "items",
       "target": "news.ycombinator.com",
       "curve": {
-        "x": 0,
-        "y": 0
+        "x": null,
+        "y": null
       }
     },
     {
       "source": "attrs",
       "target": "items",
       "curve": {
-        "x": 0,
-        "y": 0
+        "x": null,
+        "y": null
       }
     }
   ]

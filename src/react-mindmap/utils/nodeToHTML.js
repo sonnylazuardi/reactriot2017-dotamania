@@ -51,5 +51,6 @@ window.selectNode = (text) => {
  */
 export default (node) => {
   const emoji = categoryToIMG(node.category);
-  return `<a href="#" onclick="selectNode('${node.text}')">${node.text} ${emoji}</a>`;
+  const active = node.active;
+  return `<a href="#" onclick="selectNode('${node.text}')">${active ? '➡️' : ''} ${node.text} ${emoji}</a>`;
 };

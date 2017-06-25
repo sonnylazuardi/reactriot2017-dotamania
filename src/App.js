@@ -144,12 +144,13 @@ class App extends Component {
     });
   }
   render() {
-    const {activeNode} = this.props;
+    const {activeNode, editable} = this.props;
     const {title, selector, result, isAddChild} = this.state;
     return (
       <div style={styles.container}>
         <SplitterLayout>
           <div>
+            <div style={styles.logo} />
             <MindMap
               connections={this.props.connections}
               nodes={this.props.nodes}
@@ -158,50 +159,73 @@ class App extends Component {
             />
           </div>
           <div>
-            <SplitterLayout vertical secondaryInitialSize={600}>
-              <div style={{backgroundColor: '#fff', minHeight: '100vh'}} >
-                <a href="#" onClick={() => {
-                  this.props.dispatch({
-                    type: 'TOGGLE_EDITABLE',
-                  });
-                }}>Toggle Edit</a>
-                {isAddChild ?
-                  <div>
-                    <button onClick={this.onBack}>back</button>
-                    <button onClick={() => this.setState({childType: 'node'})} style={this.state.childType == 'node' ? {backgroundColor: '#ddd'} : {}}>node</button>
-                    <button onClick={() => this.setState({childType: 'subnode'})} style={this.state.childType == 'subnode' ? {backgroundColor: '#ddd'} : {}}>subnode</button>
-                    <div>
-                      title: <input type="text" value={title} onChange={(e) => {this.setState({title: e.target.value})}}></input>
+            <SplitterLayout vertical secondaryInitialSize={480}>
+              <div style={{overflowY: 'hidden'}}>
+                <div style={{backgroundColor: '#fff', minHeight: '100vh'}}>
+                  <div style={styles.rowToolbar}>
+                    <a href="#" style={{...styles.editButton, ...(editable ? {backgroundColor: '#4b90f7', color: '#fff'} : {})}} onClick={() => {
+                      this.props.dispatch({
+                        type: 'TOGGLE_EDITABLE',
+                      });
+                    }}>{editable ? '🔐' : '📝'}</a>
+                    {isAddChild ?
+                      <a href="#" style={styles.editButton} onClick={this.onBack}>⬅️</a>
+                      : null}
+                    <div style={styles.toolbar}>
+                      {isAddChild ?
+                        'Add Child'
+                        : activeNode ? 'Edit Node' : ''}
                     </div>
-                    <div>
-                      selector: <input type="text" value={selector} onChange={(e) => {this.setState({selector: e.target.value})}}></input>
-                    </div>
-                    <button onClick={this.onSaveChild}>save</button>
                   </div>
-                  :
-                  (activeNode ?
-                    <div>
-                      <div>
-                        title: <input type="text" value={title} onChange={(e) => {this.setState({title: e.target.value})}}></input>
+                  {isAddChild ?
+                    <div style={{padding: 15}}>
+                      <div style={styles.inputWrap}>
+                        <div style={{...styles.label, paddingTop: 5}}>type</div>
+                        <div style={{flex: 1}}>
+                          <a href="#" onClick={() => this.setState({childType: 'node'})} style={this.state.childType == 'node' ? styles.badgeActive : styles.badge}>node</a>
+                          <a href="#" onClick={() => this.setState({childType: 'subnode'})} style={this.state.childType == 'subnode' ? styles.badgeActive : styles.badge}>subnode</a>
+                        </div>
                       </div>
-                      <div>
-                        selector: <input type="text" value={selector} onChange={(e) => {this.setState({selector: e.target.value})}}></input>
+                      <div style={styles.inputWrap}>
+                        <div style={styles.label}>title</div>
+                        <input style={styles.input} type="text" value={title} onChange={(e) => {this.setState({title: e.target.value})}}></input>
                       </div>
-                      <button onClick={this.onSave}>save</button>
-                      <button onClick={this.onAddChild}>add child</button>
-                      {activeNode.category != 'wiki' ?
-                        <button onClick={this.onDelete}>delete</button>
-                        : null}
+                      <div style={styles.inputWrap}>
+                        <div style={styles.label}>selector</div>
+                        <input style={styles.input} type="text" value={selector} onChange={(e) => {this.setState({selector: e.target.value})}}></input>
+                      </div>
                     </div>
-                    : <div>Please select a node</div>)}
-                <button onClick={this.onBuild}>build</button>
+                    :
+                    (activeNode ?
+                      <div style={{padding: 20}}>
+                        <div style={styles.inputWrap}>
+                          <div style={styles.label}>title</div>
+                          <input style={styles.input} type="text" value={title} onChange={(e) => {this.setState({title: e.target.value})}}></input>
+                        </div>
+                        <div style={styles.inputWrap}>
+                          <div style={styles.label}>selector</div>
+                          <input style={styles.input} type="text" value={selector} onChange={(e) => {this.setState({selector: e.target.value})}}></input>
+                        </div>
+                      </div>
+                      : <div style={{flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', height: 180}}>Please select a node...</div>)}
+                  </div>
+                {!isAddChild && activeNode ?
+                  <div style={styles.rowAction}>
+                    <a href="#" style={styles.secondaryButton} onClick={this.onSave}>💾 SAVE</a>
+                    <a href="#" style={styles.secondaryButton} onClick={this.onAddChild}>👶 ADD CHILD</a>
+                    {activeNode && activeNode.category != 'wiki' ?
+                      <a href="#" style={styles.secondaryButton} onClick={this.onDelete}>❌ DELETE</a>
+                      : null}
+                  </div>
+                  : null}
+                {isAddChild ?
+                  <div style={styles.rowAction}>
+                    <a href="#" style={styles.secondaryButton} onClick={this.onSaveChild}>💾 SAVE CHILD</a>
+                  </div>
+                  : null}
+                <a href="#" onClick={this.onBuild} style={styles.buttonPrimary}>🕵️ SCRAPE</a>
               </div>
               <div  style={{backgroundColor: 'rgb(0, 43, 54)', minHeight: '100vh'}}>
-                <CopyToClipboard text={JSON.stringify(result)}
-                  onCopy={() => this.setState({copied: true})}>
-                  <button>Copy to clipboard</button>
-                </CopyToClipboard>
-                {this.state.copied ? <span style={{color: 'red'}}>Copied.</span> : null}
                 {result ?
                   <JSONTree
                     data={result}
@@ -209,6 +233,11 @@ class App extends Component {
                     shouldExpandNode={(keyName, data, level) => true}
                     />
                     : null}
+                <CopyToClipboard text={JSON.stringify(result)}
+                  onCopy={() => this.setState({copied: true})}>
+                  <a href="#" style={styles.clipButton}>🗂️ COPY</a>
+                </CopyToClipboard>
+                {this.state.copied ? <span style={{color: 'red'}}>Copied.</span> : null}
               </div>
             </SplitterLayout>
           </div>
@@ -231,6 +260,122 @@ const styles = {
   },
   column: {
     flex: 1,
+  },
+  buttonPrimary: {
+    backgroundColor: '#4b90f7',
+    padding: '20px 60px',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: 25,
+    textAlign: 'center',
+    fontWeight: '900',
+    textDecoration: 'none',
+    color: '#fff',
+  },
+  logo: {
+    background: 'url("/images/logo.png") no-repeat',
+    width: 300,
+    height: 60,
+    margin: '20px 0 0 20px',
+    backgroundSize: 'contain',
+  },
+  rowAction: {
+    display: 'flex',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 60,
+    flexDirection: 'row',
+    flex: 1,
+  },
+  secondaryButton: {
+    flex: 1,
+    backgroundColor: '#fff',
+    border: '1px solid #ddd',
+    padding: '20px 30px',
+    height: 25,
+    textAlign: 'center',
+    fontWeight: '900',
+    textDecoration: 'none',
+    color: '#4b90f7',
+  },
+  editButton: {
+    backgroundColor: '#fff',
+    border: '1px solid #ddd',
+    padding: '20px',
+    height: 25,
+    width: 25,
+    textAlign: 'center',
+    fontWeight: '900',
+    textDecoration: 'none',
+    color: '#4b90f7',
+    display: 'block',
+  },
+  clipButton: {
+    backgroundColor: 'rgba(255,255,255,.3)',
+    border: '1px solid #ddd',
+    padding: '10px',
+    height: 20,
+    width: 120,
+    borderRadius: 5,
+    textAlign: 'center',
+    fontWeight: '900',
+    textDecoration: 'none',
+    color: '#fff',
+    display: 'block',
+    position: 'fixed',
+    right: 10,
+    bottom: 10,
+    fontSize: '12px',
+  },
+  rowToolbar: {
+    display: 'flex',
+    flexDirection: 'row',
+    flex: 1,
+  },
+  toolbar: {
+    flex: 1,
+    height: 25,
+    padding: '20px',
+    border: '1px solid #ddd',
+  },
+  inputWrap: {
+    marginBottom: 10,
+    display: 'flex',
+    flexDirection: 'row',
+    flex: 1,
+  },
+  label: {
+    width: 60,
+    paddingTop: 10,
+    paddingRight: 10,
+    textAlign: 'right',
+  },
+  input: {
+    flex: 1,
+    padding: '10px 5px',
+    border: '1px solid #ddd',
+    fontSize: '16px',
+  },
+  badgeActive: {
+    backgroundColor: '#4b90f7',
+    color: '#fff',
+    borderRadius: 5,
+    padding: '5px 10px',
+    margin: '0 5px 10px 0',
+    fontSize: '12px',
+    textDecoration: 'none',
+  },
+  badge: {
+    backgroundColor: '#fff',
+    border: '1px solid #4b90f7',
+    borderRadius: 5,
+    padding: '5px 10px',
+    margin: '0 5px 10px 0',
+    fontSize: '12px',
+    textDecoration: 'none',
   },
 };
 

@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import './index.css';
 
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
 const data = require('./parsed-map/data.json');
+
 
 const initialState = {
   connections: data.connections,
@@ -53,8 +55,8 @@ const reducer = (state = initialState, action) => {
             source: data.source.text,
             target: data.node.text,
             curve: {
-              x: 0,
-              y: 0,
+              x: null,
+              y: null,
             },
           }
         ] : state.connections,
@@ -73,6 +75,14 @@ const reducer = (state = initialState, action) => {
       console.log('ACTIVE NODE', node);
       return {
         ...state,
+        nodes: state.nodes.map(node => {
+          if (node.text == data) return {...node, active: true};
+          return {...node, active: false};
+        }),
+        subnodes: state.subnodes.map(subnode => {
+          if (subnode.text == data) return {...subnode, active: true};
+          return {...subnode, active: false};
+        }),
         activeNode: node,
       }
     }
