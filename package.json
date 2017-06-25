@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.16.2",
     "d3": "^4.9.1",
     "express": "^4.15.3",
     "fs-walk": "0.0.1",

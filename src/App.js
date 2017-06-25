@@ -3,6 +3,7 @@ import MindMap from './react-mindmap';
 import { connect } from 'react-redux';
 import SplitterLayout from 'react-splitter-layout';
 import JSONTree from 'react-json-tree'
+import axios from 'axios';
 
 const result = require('./parsed-map/result.json');
 
@@ -19,7 +20,20 @@ class App extends Component {
     }
   }
   onBuild = () => {
-    console.log(this.onBuildQuery());
+    // console.log(this.onBuildQuery());
+    axios({
+      method: 'post',
+      url: 'http://gdom.graphene-python.org/graphql',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      data: {
+        query: this.onBuildQuery(),
+      },
+    }).then(({data}) => {
+      console.log('RESPONSE', data);
+    }).catch(e => console.log(e));
   }
   onBuildQuery() {
     const {nodes, subnodes, connections} = this.props;
