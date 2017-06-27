@@ -6,6 +6,8 @@ Demo: http://dotamania.2017.reactriot.com/
 
 Please vote us if you like it 🍻 https://www.reactriot.com/entries/446-dotaflash
 
+![demo](https://media.giphy.com/media/3o7btWKp9lTyQB1tnO/giphy.gif)
+
 ## Building 🚀
 
 ```
