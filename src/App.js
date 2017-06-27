@@ -44,10 +44,17 @@ class App extends Component {
   onBuildQuery() {
     const {nodes, subnodes, connections} = this.props;
     const rootParent = nodes.filter(node => node.category == 'wiki')[0];
-
+    const activeSubnodes = subnodes.filter(subnode => subnode.parent == rootParent.text);
     return (`
       {
         page(url: "${rootParent.selector}") {
+          ${activeSubnodes.map(subnode => {
+            if (subnode.selector.indexOf('|') != -1) {
+              const splitter = subnode.selector.split('|');
+              return `${subnode.text}: attr(selector:"${splitter[0]}", name:"${splitter[1]}")\n`;
+            }
+            return `${subnode.text}: text(selector: "${subnode.selector}")\n`;
+          })}
           ${this.onSearchNode(rootParent)}
         }
       }

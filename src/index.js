@@ -52,8 +52,8 @@ const reducer = (state = initialState, action) => {
         connections: data.type == 'node' ? [
           ...state.connections,
           {
-            source: data.source.text,
-            target: data.node.text,
+            source: data.node.text,
+            target: data.source.text,
             curve: {
               x: null,
               y: null,
