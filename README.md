@@ -28,7 +28,7 @@ Arrange the things that you want to scrape visually using mind map
 
 Scrape any website, edit the title and selector of the node easily within the web
 
-![editor](https://media.giphy.com/media/3oKIP91rndcbmHmwak/giphy.gif)
+![editor](https://media.giphy.com/media/3og0INxaGgCizWV3B6/giphy.gif)
 
 **Export To JSON**
 
