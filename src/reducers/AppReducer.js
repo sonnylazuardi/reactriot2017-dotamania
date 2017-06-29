@@ -1,9 +1,13 @@
 const data = require('../parsed-map/data.json');
 
+let initialData = window.INITIAL_DATA && JSON.parse(window.INITIAL_DATA);
+
+if (!initialData) initialData = data;
+
 const initialState = {
-  connections: data.connections,
-  nodes: data.nodes,
-  subnodes: data.subnodes,
+  connections: initialData.connections,
+  nodes: initialData.nodes,
+  subnodes: initialData.subnodes,
   editable: false,
   activeNode: null,
 }
@@ -117,8 +121,8 @@ const reducer = (state = initialState, action) => {
         connections: state.connections.map(connection => {
           return {
             ...connection,
-            source: connection.source.text,
-            target: connection.target.text,
+            source: (connection.source.text == data.source) ? node.text : connection.source.text,
+            target: (connection.target.text == data.source) ? node.text : connection.target.text,
           };
         }),
       }

@@ -29,6 +29,10 @@
       You need to enable JavaScript to run this app.
     </noscript>
     <div id="root"></div>
+    <script type="text/javascript">
+      window.INITIAL_DATA = {{ INITIAL_DATA() }};
+      window.SCRAPING_KEY = {{ KEY() }};
+    </script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

@@ -10,7 +10,6 @@ import ResultViewer from './components/ResultViewer';
 class App extends Component {
   state = {
     result: null,
-    copied: false,
     onboarding: true,
   }
   onStart = () => {
@@ -45,7 +44,7 @@ class App extends Component {
                 <NodeEditor setResult={this.setResult} />
               </div>
               <div  style={{backgroundColor: 'rgb(0, 43, 54)', minHeight: '100vh'}}>
-                <ResultViewer onCopy={() => this.setState({copied: true})} result={result} copied={this.state.copied}/>
+                <ResultViewer result={result} copied={this.state.copied}/>
               </div>
             </SplitterLayout>
           </div>
@@ -82,9 +81,9 @@ const styles = {
 };
 
 export default connect(state => ({
-  connections: state.connections,
-  nodes: state.nodes,
-  subnodes: state.subnodes,
-  editable: state.editable,
-  activeNode: state.activeNode,
+  connections: state.app.connections,
+  nodes: state.app.nodes,
+  subnodes: state.app.subnodes,
+  editable: state.app.editable,
+  activeNode: state.app.activeNode,
 }))(App);

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 class NodeEditor extends Component {
   state = {
@@ -147,6 +148,34 @@ class NodeEditor extends Component {
       selector: this.props.activeNode.selector,
     });
   }
+  onSaveData = () => {
+    const {
+      nodes,
+      subnodes,
+      connections,
+    } = this.props;
+    axios({
+      method: 'post',
+      url: '/scrape',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      data: {
+        content: JSON.stringify({
+          nodes,
+          subnodes,
+          connections,
+        }),
+      },
+    }).then(({data}) => {
+      console.log('DATA', data);
+      window.location.href = '/scrape/' + data.data.createData.key;
+    }).catch(e => console.log(e));
+  }
+  onCopyShare = () => {
+    alert('The share link has been copied to clipboard!');
+  }
   render() {
     const {activeNode, editable} = this.props;
     const {isAddChild, title, selector} = this.state;
@@ -159,6 +188,11 @@ class NodeEditor extends Component {
                 type: 'TOGGLE_EDITABLE',
               });
             }}>{editable ? '🔐' : '📝'}</a>
+            <a href="#" style={styles.editButton} onClick={this.onSaveData}>💾</a>
+            <CopyToClipboard text={window.location.href}
+              onCopy={this.onCopyShare}>
+              <a href="#" style={styles.editButton}>🎁</a>
+            </CopyToClipboard>
             {isAddChild ?
               <a href="#" style={styles.editButton} onClick={this.onBack}>⬅️</a>
               : null}
@@ -316,9 +350,9 @@ const styles = {
 };
 
 export default connect(state => ({
-  connections: state.connections,
-  nodes: state.nodes,
-  subnodes: state.subnodes,
-  editable: state.editable,
-  activeNode: state.activeNode,
+  connections: state.app.connections,
+  nodes: state.app.nodes,
+  subnodes: state.app.subnodes,
+  editable: state.app.editable,
+  activeNode: state.app.activeNode,
 }))(NodeEditor);

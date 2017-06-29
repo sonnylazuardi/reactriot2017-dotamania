@@ -3,8 +3,8 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 import JSONTree from 'react-json-tree'
 
 class ResultViewer extends Component {
-  static defaultProps = {
-    onCopy: () => {}
+  onCopy = () => {
+    alert('JSON result has been copied to clipboard');
   }
   render() {
     const {result, copied} = this.props;
@@ -18,7 +18,7 @@ class ResultViewer extends Component {
             />
             : null}
         <CopyToClipboard text={JSON.stringify(result)}
-          onCopy={() => this.props.onCopy()}>
+          onCopy={this.onCopy}>
           <a href="#" style={styles.clipButton}>🗂️ COPY</a>
         </CopyToClipboard>
         {copied ? <span style={{color: 'red'}}>Copied.</span> : null}
