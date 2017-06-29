@@ -20,22 +20,27 @@ then connect to http://̨localhost:5000
 
 ## Features
 
-**Mind Map**
+### Mind Map
 
 Arrange the things that you want to scrape visually using mind map
 
 ![visualmap](https://media.giphy.com/media/3o7bueFvMVrlD7AqXu/giphy.gif)
 
-**Scraping Node Editor**
+### Scraping Node Editor
 
 Scrape any website, edit the title and selector of the node easily within the web
 
 ![editor](https://media.giphy.com/media/3og0INxaGgCizWV3B6/giphy.gif)
 
-**Export To JSON**
+### Export To JSON
 
 Easily browse and export the scraping result to JSON
 
+### Save and Share
+
+Save your current edited map and share it with your friend
+
+![save](https://media.giphy.com/media/3oKIPn448eaYBb4Bz2/giphy.gif)
 
 ## Stacks
 
