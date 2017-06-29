@@ -165,7 +165,13 @@ class NodeEditor extends Component {
         content: JSON.stringify({
           nodes,
           subnodes,
-          connections,
+          connections: connections.map(connection => {
+            return {
+              ...connection,
+              source: connection.source.text,
+              target: connection.target.text,
+            }
+          })
         }),
       },
     }).then(({data}) => {
