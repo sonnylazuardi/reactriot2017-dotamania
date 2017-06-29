@@ -49,7 +49,7 @@ app.get(['/', '/scrape/:key'], function(req, res) {
     if (!data.data.allDatas[0]) return res.render('index', initialData);
     initialData = {
       INITIAL_DATA: () => JSON.stringify(data.data.allDatas[0].content),
-      KEY: () => key,
+      KEY: () => JSON.stringify(key),
     };
     return res.render('index', initialData);
   })
