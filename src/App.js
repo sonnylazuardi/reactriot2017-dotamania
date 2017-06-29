@@ -39,7 +39,7 @@ class App extends Component {
             />
           </div>
           <div>
-            <SplitterLayout vertical secondaryInitialSize={480}>
+            <SplitterLayout vertical primaryInitialSize={500}>
               <div style={{overflowY: 'hidden'}}>
                 <NodeEditor setResult={this.setResult} />
               </div>
