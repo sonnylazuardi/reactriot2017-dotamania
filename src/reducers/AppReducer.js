@@ -22,6 +22,12 @@ const reducer = (state = initialState, action) => {
         }),
         connections: state.connections.filter(connection => {
           return connection.source.text !== data && connection.target.text !== data;
+        }).map(connection => {
+          return {
+            ...connection,
+            source: connection.source.text,
+            target: connection.target.text,
+          };
         }),
       }
       return result;
@@ -49,7 +55,13 @@ const reducer = (state = initialState, action) => {
               y: null,
             },
           }
-        ] : state.connections,
+        ] : state.connections.map(connection => {
+          return {
+            ...connection,
+            source: connection.source.text,
+            target: connection.target.text,
+          };
+        }),
       }
     case 'TOGGLE_EDITABLE':
       return {
@@ -74,6 +86,13 @@ const reducer = (state = initialState, action) => {
           return {...subnode, active: false};
         }),
         activeNode: node,
+        connections: state.connections.map(connection => {
+          return {
+            ...connection,
+            source: connection.source.text,
+            target: connection.target.text,
+          };
+        }),
       }
     }
     case 'EDIT_NODE': {
@@ -95,6 +114,13 @@ const reducer = (state = initialState, action) => {
           return subnode;
         }) : state.subnodes,
         activeNode: node,
+        connections: state.connections.map(connection => {
+          return {
+            ...connection,
+            source: connection.source.text,
+            target: connection.target.text,
+          };
+        }),
       }
     }
     default:
