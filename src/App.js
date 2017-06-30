@@ -10,12 +10,21 @@ import ResultViewer from './components/ResultViewer';
 class App extends Component {
   state = {
     result: null,
-    onboarding: true,
+    onboarding: false,
   }
   onStart = () => {
     this.setState({
       onboarding: false,
     });
+  }
+  componentDidMount() {
+    const onboarding = localStorage.getItem('onboarding');
+    if (!onboarding) {
+      this.setState({
+        onboarding: true,
+      });
+      localStorage.setItem('onboarding', 'done');
+    }
   }
   setResult = (data) => {
     this.setState({

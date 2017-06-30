@@ -15,6 +15,17 @@ class ResultViewer extends Component {
             data={result}
             style={{height: '100vh'}}
             shouldExpandNode={(keyName, data, level) => true}
+            valueRenderer={raw => {
+              if (raw.indexOf('.jpg') != -1 || raw.indexOf('.png') != -1) {
+                return (
+                  <span>
+                    <span>{raw}</span>
+                    <div><img src={`${raw.replace('"', '')}`} /></div>
+                  </span>
+                )
+              }
+              return raw;
+            }}
             />
             : null}
         <CopyToClipboard text={JSON.stringify(result)}
