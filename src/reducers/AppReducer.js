@@ -11,6 +11,7 @@ const initialState = {
   editable: false,
   activeNode: null,
   loading: false,
+  autoReload: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -20,6 +21,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: data,
+        autoReload: !data ? false : state.autoReload,
       };
     case 'REMOVE_NODE':
       const result = {
@@ -39,6 +41,7 @@ const reducer = (state = initialState, action) => {
             target: connection.target.text,
           };
         }),
+        autoReload: true,
       }
       return result;
     case 'ADD_NODE':
@@ -72,6 +75,7 @@ const reducer = (state = initialState, action) => {
             target: connection.target.text,
           };
         }),
+        autoReload: true,
       }
     case 'TOGGLE_EDITABLE':
       return {
@@ -131,6 +135,7 @@ const reducer = (state = initialState, action) => {
             target: (connection.target.text == data.source) ? node.text : connection.target.text,
           };
         }),
+        autoReload: true,
       }
     }
     default:

@@ -18,6 +18,11 @@ class NodeEditor extends Component {
       if (!nextProps.activeNode) return;
       this.setState({title: nextProps.activeNode.text, selector: nextProps.activeNode.selector});
     }
+    console.log('AUTO RELOAD', nextProps.autoReload);
+    if (this.props.autoReload != nextProps.autoReload && nextProps.autoReload) {
+      alert('RELOAD');
+      this.onBuild();
+    }
   }
   onBuild = () => {
     if (this.props.loading) return;
@@ -371,4 +376,5 @@ export default connect(state => ({
   editable: state.app.editable,
   activeNode: state.app.activeNode,
   loading: state.app.loading,
+  autoReload: state.app.autoReload,
 }))(NodeEditor);
