@@ -10,11 +10,17 @@ const initialState = {
   subnodes: initialData.subnodes,
   editable: false,
   activeNode: null,
+  loading: false,
 }
 
 const reducer = (state = initialState, action) => {
   const {data} = action;
   switch (action.type) {
+    case 'SET_LOADING':
+      return {
+        ...state,
+        loading: data,
+      };
     case 'REMOVE_NODE':
       const result = {
         ...state,

@@ -101,6 +101,9 @@ app.post('/graphql', function (req, res) {
     },
   }).then(({data}) => {
     res.json(data);
+  }).catch((error) => {
+    console.log(error.response.data);
+    res.json(error.response.data);
   });
 })
 

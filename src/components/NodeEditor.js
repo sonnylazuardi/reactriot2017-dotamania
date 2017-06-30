@@ -20,6 +20,11 @@ class NodeEditor extends Component {
     }
   }
   onBuild = () => {
+    if (this.props.loading) return;
+    this.props.dispatch({
+      type: 'SET_LOADING',
+      data: true,
+    });
     axios({
       method: 'post',
       url: '/graphql',
@@ -31,6 +36,10 @@ class NodeEditor extends Component {
         query: this.onBuildQuery(),
       },
     }).then(({data}) => {
+      this.props.dispatch({
+        type: 'SET_LOADING',
+        data: false,
+      });
       this.props.setResult(data);
       // this.setState({
       //   result: data,
@@ -183,7 +192,7 @@ class NodeEditor extends Component {
     alert('The share link has been copied to clipboard!');
   }
   render() {
-    const {activeNode, editable} = this.props;
+    const {activeNode, editable, loading} = this.props;
     const {isAddChild, title, selector} = this.state;
     return (
       <div>
@@ -254,7 +263,7 @@ class NodeEditor extends Component {
             <a href="#" style={styles.secondaryButton} onClick={this.onSaveChild}>💾 SAVE CHILD</a>
           </div>
           : null}
-        <a href="#" onClick={this.onBuild} style={styles.buttonPrimary}>🕵️ SCRAPE</a>
+        <a href="#" onClick={this.onBuild} style={{...styles.buttonPrimary, ...(loading ? {backgroundColor: '#999'} : null)}}>🕵️ SCRAPE</a>
       </div>
     )
   }
@@ -361,4 +370,5 @@ export default connect(state => ({
   subnodes: state.app.subnodes,
   editable: state.app.editable,
   activeNode: state.app.activeNode,
+  loading: state.app.loading,
 }))(NodeEditor);

@@ -95,4 +95,5 @@ export default connect(state => ({
   subnodes: state.app.subnodes,
   editable: state.app.editable,
   activeNode: state.app.activeNode,
+  loading: state.app.loading,
 }))(App);

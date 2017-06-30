@@ -17,6 +17,7 @@
     "react-copy-to-clipboard": "^5.0.0",
     "react-dom": "^15.6.1",
     "react-json-tree": "^0.10.9",
+    "react-loader": "^2.4.2",
     "react-mindmap": "^2.0.6",
     "react-redux": "^5.0.5",
     "react-slick": "^0.14.11",

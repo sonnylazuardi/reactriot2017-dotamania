@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import JSONTree from 'react-json-tree'
+import Loader from 'react-loader';
+import { connect } from 'react-redux';
 
 class ResultViewer extends Component {
   onCopy = () => {
     alert('JSON result has been copied to clipboard');
   }
   render() {
-    const {result, copied} = this.props;
+    const {result, copied, loading} = this.props;
     return (
       <div>
         {result ?
@@ -16,6 +18,7 @@ class ResultViewer extends Component {
             style={{height: '100vh'}}
             shouldExpandNode={(keyName, data, level) => true}
             valueRenderer={raw => {
+              if (!raw.length) return raw;
               if (raw.indexOf('.jpg') != -1 || raw.indexOf('.png') != -1) {
                 return (
                   <span>
@@ -33,6 +36,11 @@ class ResultViewer extends Component {
           <a href="#" style={styles.clipButton}>🗂️ COPY</a>
         </CopyToClipboard>
         {copied ? <span style={{color: 'red'}}>Copied.</span> : null}
+        {loading ?
+          <div style={styles.loaderWrapper}>
+            <Loader />
+          </div>
+          : null}
       </div>
     );
   }
@@ -56,6 +64,18 @@ const styles = {
     bottom: 10,
     fontSize: '12px',
   },
+  loaderWrapper: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 };
 
-export default ResultViewer;
+export default connect(state => ({
+  loading: state.app.loading,
+}))(ResultViewer);
